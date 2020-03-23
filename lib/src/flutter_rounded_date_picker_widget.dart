@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -110,6 +111,7 @@ Future<DateTime> showRoundedDatePicker(
     ImageProvider imageHeader,
     String description = "",
     String fontFamily,
+    ImageFilter filter,
     bool barrierDismissible = false,
     Color background = Colors.transparent,
     String textNegativeButton,
@@ -207,6 +209,13 @@ Future<DateTime> showRoundedDatePicker(
     child = Localizations.override(
       context: context,
       locale: locale,
+      child: child,
+    );
+  }
+
+  if (filter != null) {
+    child = BackdropFilter(
+      filter: filter,
       child: child,
     );
   }
